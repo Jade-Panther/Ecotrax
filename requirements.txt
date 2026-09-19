@@ -8,3 +8,4 @@ reverse_geocoder
 pytz
 timezonefinder
 geopandas
+gunicorn
