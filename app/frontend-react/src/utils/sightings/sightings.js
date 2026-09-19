@@ -48,7 +48,7 @@ export const displaySightings = (sightings, limit = state.limit) => {
                     <div class="extra-info-container closed">
 
                         <div class="photo-container">
-                            <img src="../assets/empty-picture.png" alt="Sighting Image">
+                            <img src="../public/empty-picture.png" alt="Sighting Image">
                         </div>
 
                         <div class="sighting-info">

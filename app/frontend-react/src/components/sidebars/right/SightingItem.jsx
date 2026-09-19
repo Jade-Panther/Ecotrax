@@ -48,7 +48,7 @@ const SightingItem = ({ sighting, onPromote }) => {
                     >
                         <div className='photo-container'>
                             <img
-                                src='../assets/empty-picture.png'
+                                src='../public/empty-picture.png'
                                 alt='Sighting Image'
                             />
                         </div>

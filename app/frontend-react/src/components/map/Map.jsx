@@ -18,25 +18,25 @@ const crossingsLayer = L.layerGroup();
 
 const ICONS = {
     sightingMarker: L.icon({
-        iconUrl: '../../assets/map-marker.png',
+        iconUrl: '../../public/map-marker.png',
         iconSize: [32, 32],
         iconAnchor: [16, 32],
         popupAnchor: [0, -32],
     }),
     crossingMarkerRed: L.icon({
-        iconUrl: '../../assets/red_circle.png',
+        iconUrl: '../../public/red_circle.png',
         iconSize: [8, 8],
         iconAnchor: [0, 0],
         popupAnchor: [0, 0],
     }),
     crossingMarkerOrange: L.icon({
-        iconUrl: '../../assets/orange_circle.png',
+        iconUrl: '../../public/orange_circle.png',
         iconSize: [8, 8],
         iconAnchor: [0, 0],
         popupAnchor: [0, 0],
     }),
     crossingMarkerGreen: L.icon({
-        iconUrl: '../../assets/green_circle.png',
+        iconUrl: '../../public/green_circle.png',
         iconSize: [8, 8],
         iconAnchor: [0, 0],
         popupAnchor: [0, 0],
@@ -88,7 +88,7 @@ const Map = ({ children }) => {
         mapInst.getPane('markerPane').style.zIndex = 650;
 
         // Load the stte data
-        fetch('/assets/geojson/states.json')
+        fetch('/public/geojson/states.json')
             .then((r) => r.json())
             .then((geojson) => {
                 if(!mapInst) return;

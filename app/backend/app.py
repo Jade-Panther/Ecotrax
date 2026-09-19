@@ -54,7 +54,7 @@ def static_proxy(path):
 
 @app.route("/favicon.ico")
 def favicon():
-    return send_from_directory(os.path.join(FRONTEND_DIR, 'assets'), 'favicon.ico')
+    return send_from_directory(os.path.join(FRONTEND_DIR, 'public'), 'favicon.ico')
 
 @app.route('/')
 def index():
