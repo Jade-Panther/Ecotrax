@@ -223,7 +223,7 @@ const ReportSidebar = ({ onSightingAdded }) => {
           
           <div className='form-group'>
             <div className='photo-container'>
-              <img src='/public/empty-picture.png' alt='Sighting Image' />
+              <img src='/empty-picture.png' alt='Sighting Image' />
               <div className='upload-text'>Upload photo</div>
             </div>
             <div className='note'>Photos are optional, but they help improve data quality</div>
@@ -270,7 +270,7 @@ const ReportSidebar = ({ onSightingAdded }) => {
 
               {roadWarning && (
                 <div id='road-warn' className='error-message inline-warn'>
-                  <img className='small-icon' src='/public/warn-icon.png' alt='Warning' />
+                  <img className='small-icon' src='warn-icon.png' alt='Warning' />
                   <span className='error-text'>{roadWarning}</span>
                 </div>
               )}
