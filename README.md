@@ -2,6 +2,8 @@
 
 *In Development*
 
+Sometimes available here: https://ecotrax.onrender.com/
+
 Website quickstart
 Clone repository
 pip install -r requirements.txt
