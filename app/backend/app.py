@@ -24,7 +24,8 @@ python -m app.backend.app
 '''
 
 # FRONTEND_DIR = '/workspaces/Bias/app/frontend'
-FRONTEND_DIR = '/workspaces/Bias/app/frontend-react'
+# FRONTEND_DIR = '/workspaces/Bias/app/frontend-react'
+FRONTEND_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../frontend-react/dist'))
 
 def create_app():
     app = Flask(__name__)
