@@ -1,0 +1,173 @@
+#map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+}
+/* botameh234@codoteam.com*/
+
+#map {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0 20px;
+    transition: opacity 0.2s ease;
+}
+
+.over-map {
+    cursor: default;
+    background: rgba(var(--bg-0),0.92);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    backdrop-filter: blur(26px);
+    transition: 0.3s ease;
+    z-index: 1000;
+    position: absolute;
+}
+
+#map-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+#map-controls button {
+    height: 35px;
+    border: 2px solid var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-bright);
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 8px;
+}
+#reset-zoom {
+    width: auto;
+    padding: 0 10px;
+    margin-left: 10px;
+}
+#zoom-in, #zoom-out {
+    width: 35px;
+    padding: 0;
+}
+#zoom-level {
+    padding: 0 10px;
+    color: var(--text-bright)
+}
+
+.leaflet-heatmap-layer, .leaflet-pane canvas {
+    pointer-events: none !important;
+}
+
+
+
+#heat-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    background: rgba(20, 20, 22, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-sizing: border-box;
+    z-index: 999;
+    padding: 10px;
+    transition: 0.8s ease;
+}
+#heat-controls:hover {
+    background: var(--bg-2);
+}
+
+#heat-bar {
+    height: 160px;
+    display: flex;
+    justify-content: center;
+}
+
+
+#heat-gradient {
+    --blue: rgb(37, 99, 235);
+    --cyan: rgb(6, 182, 212);
+    --green: rgb(16, 185, 129);
+    --yellow: rgb(234, 179, 8);
+    --red: rgb(239, 68, 68);
+
+    width: 8px;
+    height: 170px;
+    border-radius: 99px;
+    border: 2px solid var(--bg-3);
+    background: linear-gradient(
+        to bottom,
+        var(--red) 0%,
+        var(--yellow) 33%,
+        var(--green) 66%,
+        var(--blue) 100%
+    );
+}
+
+.threshold {
+    position: absolute;
+    left: 0;
+    width: 36px;
+    height: 2px;
+    background: black;
+    transform: translateY(-50%);
+    transition: 0.2s ease;
+}
+
+.dragger {
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-bright);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.threshold:nth-child(1) { top: 80%; }
+.threshold:nth-child(2) { top: 60%; }
+.threshold:nth-child(3) { top: 40%; }
+.threshold:nth-child(4) { top: 10%; }
+.threshold:active {
+    cursor: grabbing;
+    background: orange;
+}
+
+
+#toggle-view {
+    left: 50%;
+    top: 10px;
+    display: flex;
+    border-radius: 10px;
+}
+
+.toggle-btn {
+    border-radius: 0px;
+}
+
+.toggle-btn.activated {
+    background: rgba(255,255,255,0.4)
+}
+
+.toggle-btn:nth-child(1) {
+    border-radius: 10px 0px 0px 10px;
+}
+.toggle-btn:nth-child(3) {
+    border-radius: 0px 10px 10px 0px;
+}
+

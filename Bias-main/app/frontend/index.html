@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Eco</title>
+    <link rel='stylesheet' href='css/index.css'>
+    <link rel='stylesheet' href='css/map.css'>
+    <link rel='stylesheet' href='css/sidebar.css'>
+    <link rel='stylesheet' href='css/right_sidebar.css'>
+    <link rel='stylesheet' href='css/filter_sidebar.css'>
+    <link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v4.0.2/maptiler-sdk.umd.min.js"></script>
+    <link href="https://cdn.maptiler.com/maptiler-sdk-js/v4.0.2/maptiler-sdk.css" rel="stylesheet" />
+    <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v4.1.0/leaflet-maptilersdk.umd.min.js"></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+
+  </head>
+  <body>
+    <div id="top-nav-container">
+      <nav id="top-nav">
+        <div id="title-container">
+          <a id="title-text" href="./index.html">Ecotrax</a>
+        </div>
+
+        <div id="nav-links">
+          <a class="nav-link" id="info" href="./info.html">Info</a>
+          <a class="nav-link" id="about" href="./about.html">About</a>
+          <a class="nav-link bordered" id="report" href="./report.html">Report</a>
+        </div>
+      </nav>
+    </div>
+
+    <div id="map-container">
+
+      <div id="filter-sidebar" class="sidebar over-map">
+        <button class="hide-btn" id="hide-filter-sidebar">
+          <span class="material-symbols-outlined">arrow_back_ios</span>
+        </button> 
+        <div class="sidebar-content">
+          
+          <div id="filter-title">Filters</div>
+          <h3 class="filter-section">General</h3>
+          <div class="species-autocomplete-container">
+            <input class="filter species-autocomplete text-input" type="text" id="filter-species" placeholder="Filter species">
+            <ul class="autocomplete" style="display: none;">
+              <li>Common Name 1</li>
+            </ul>
+          </div>
+
+          <div class="section-flex">
+            <select id="filter-position" class="filter select-input">
+              <option value=""selected>Any position</option>
+              <option value="dead">On road</option>
+              <option value="alive">Roadside</option>
+              <option value="alive">Near road</option>
+            </select> 
+            <select id="filter-condition" class="filter select-input">
+              <option value=""selected>Any condition</option>
+              <option value="dead">Dead</option>
+              <option value="alive">Alive</option>
+            </select>
+          </div>
+          <h3 class="filter-section">Location</h3>
+          <div class="state-autocomplete-container">
+            <input class="filter text-input" type="text" id="filter-state" placeholder="Filter state">
+            <ul class="autocomplete"></ul>
+          </div>
+          <select id="filter-road-type" class="filter select-input">
+            <option value=""selected>Any road</option>
+            <option value="dead">Rural</option>
+            <option value="alive">Suburban</option>
+            <option value="alive">Urban</option>
+          </select>
+          
+          <h3 class="filter-section">Time / Date</h3>
+          <select id="filter-time" class="filter select-input">
+            <option value=""selected>Any</option>
+            <option value="last-seven">Last 7 days</option>
+            <option value="last-thirty">Last 30 days</option>
+            <option value="last-year">Last year</option>
+          </select>
+
+          <div class="section-flex">
+            <input class="filter text-input" type="text" id="filter-date-start" placeholder="Filter date start">
+            <input class="filter text-input" type="text" id="filter-date-end" placeholder="Filter date end">
+          </div>
+
+          <button id="clear-filters-btn" class="submit-btn">Clear filters</button>
+        
+        </div>
+        
+      </div>
+
+
+      <div id='map'>
+        <div class="over-map" id="map-controls">
+          <button id="zoom-in">+</button>
+          <div id="zoom-level">100%</div>
+          <button id="zoom-out">-</button>
+          <button id="reset-zoom">Reset</button>
+        </div>
+        <div class="over-map" id="heat-controls">
+          <div id="heat-gradient"></div>
+          <div id="heat-bar">
+            <div class="threshold" data-index="0">
+              <div class="dragger"></div>
+            </div>
+            <div class="threshold" data-index="1">
+              <div class="dragger"></div>
+            </div>
+            <div class="threshold" data-index="2">
+              <div class="dragger"></div>
+            </div>
+            <div class="threshold" data-index="3">
+              <div class="dragger"></div>
+            </div>
+          </div>
+        </div>
+        <div class="over-map" id="time-controls">
+          <div id="time-mode-toggle">
+              <div class="icon-wrap">
+                  <span class="sun material-symbols-outlined filled">wb_sunny</span>
+                  <span class="moon material-symbols-outlined filled">bedtime</span>
+              </div>
+          </div>
+          <div class="time-inner">
+            
+          
+            <div id="track"></div>
+            <div class="ticks" id="ticks"></div>
+            <div id="range"></div>
+
+            <input id="min-slider" type="range" min="0", max="1440" value="100">
+            <input id="max-slider" type="range" min="0" max="1440" value="500">
+          </div>
+
+        </div>
+        <div class="over-map" id="toggle-view">
+          <button class="toggle-btn activated tooltip" id="density">
+            <span class="tooltip-text glassy">Density map</span>
+            <span class="material-symbols-outlined">location_on</span>
+          </button>
+          <button class="toggle-btn tooltip" id="risk">
+            <span class="tooltip-text glassy">Risk assessment</span>
+            <span class="material-symbols-outlined">warning</span>
+          </button>
+          <button class="toggle-btn tooltip" id="crossings">
+            <span class="tooltip-text glassy">Crossings</span>
+            <span class="material-symbols-outlined">explore</span>
+          </button>
+        </div>
+      </div>
+
+    
+      <div id="right-sidebar" class="sidebar">
+        <div class="sidebar-content">
+          <div id="analysis-accordian" class="accordian open">
+            <div class="accordian-header">Analysis</div>
+            <div class="accordian-content" id="analysis-content">
+              <div class="chart-wrapper">
+                <canvas id="pie-graph" class="chart"></canvas>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="line-graph" class="chart"></canvas>
+              </div>
+            </div>
+          </div>
+          <div id="sightings-accordian" class="accordian open">
+            <h3 class="accordian-header">Sightings</h3>
+            <h4 id="sightings-count"><span></span> sightings</h4>
+            <div class="accordian-content">
+              <ul id="sightings-list">
+                <!-- Sightings go here -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="module" src="./js/pages/map-page.js"></script>
+  </body>
+</html>

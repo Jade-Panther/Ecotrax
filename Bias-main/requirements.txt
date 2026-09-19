@@ -1,0 +1,10 @@
+flask
+flask_sqlalchemy
+requests
+pandas
+numpy
+pyinaturalist
+reverse_geocoder
+pytz
+timezonefinder
+geopandas

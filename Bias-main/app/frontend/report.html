@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title></title>
+    <link rel='stylesheet' href='css/index.css'>
+    <link rel='stylesheet' href='css/map.css'>
+    <link rel='stylesheet' href='css/sidebar.css'>
+    <link rel='stylesheet' href='css/filter_sidebar.css'>
+    <link rel='stylesheet' href='css/right_sidebar.css'>
+    <link rel='stylesheet' href='css/report.css'>
+    <link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'>
+    <script src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+  </head>
+  <body>
+    <div id="top-nav-container">
+      <nav id="top-nav">
+        <div id="title-container">
+          <a id="title-text" href="./index.html">Ecotrax</a>
+        </div>
+
+        <div id="nav-links">
+          <a class="nav-link" id="info" href="./info.html">Info</a>
+          <a class="nav-link" id="about" href="./about.html">About</a>
+          <a class="nav-link bordered" id="report" href="./report.html">Report</a>
+        </div>
+      </nav>
+    </div>
+    
+    <div id="map-container">
+        <div id="report-sidebar" class="sidebar">
+            <div class="sidebar-content" id="form-page">
+                <h2 class="sub-title" id="submit-title">Report</h2>
+
+                <div class="form-group">
+                  <div class="photo-container">
+                    <img src="/assets/empty-picture.png" alt="Sighting Image">
+                    <div class="upload-text">Upload photo</div>
+                  </div>
+                  <div class="note">Photos are optional, but they help improve data quality</div>
+                </div>
+                
+                <div class="form-group">
+                  <div class="species-autocomplete-container">
+                    <input type="text" id="report-species" class="species-autocomplete text-input form-input" placeholder="Species">
+                    <ul class="autocomplete" style="display: none;"></ul>
+                  </div>
+                  <span id="species-error" class="error-message"></span>
+                </div>
+                
+                <div class="form-group">
+                  <h3 class="filter-section">Position</h3>
+                  <div class="section-flex">
+                    <input type="text" id="report-lat" class="text-input form-input" placeholder="Latitude">
+                    <input type="text" id="report-lon" class="text-input form-input" placeholder="Longitude">
+                    <span id="location-error" class="error-message"></span>
+                  </div>
+                  <span id="lon-error" class="error-message"></span>
+
+                  <div class="note">You can click on the map to select location as well.</div>
+
+                  <div id="state-road" class="geodata-container">
+                    <div class="geodata-item">State: <span id="state-info" class="form-loc-info">—</span></div>
+                    <div class="geodata-item">Road: <span id="road-info" class="form-loc-info">—</span></div>
+
+                    <div id="road-warn" class="error-message inline-warn">
+                        <img class="small-icon" src="assets/warn-icon.png" alt="Warning">
+                        <span class="error-text"></span>
+                    </div>
+                  </div>
+                  
+              
+                  <select id="report-position" class="select-input">
+                    <option value="" disabled selected>Road position</option>
+                    <option value="on_road">On Road</option>
+                    <option value="road_side">Road side (within 10 ft)</option>
+                    <option value="near_road">Near road (more than 10 ft)</option>
+                  </select>
+                  <span id="position-error" class="error-message"></span>
+                </div>
+                
+                <div class="form-group">
+                  <h3 class="filter-section">Condition</h3>
+                  <div class="section-flex">
+                    <select id="report-condition" class="select-input form-input">
+                      <option value="" disabled selected>Status</option>
+                      <option value="dead">Dead</option>
+                      <option value="alive">Alive</option>
+                    </select>
+                    <select id="report-corpse" class="select-input form-input" style="display:none;">
+                      <option value="" disabled selected>Body Stage</option>
+                      <option value="fresh">Fresh</option>
+                      <option value="decomposed">Decomposed (bloating, smell, exposed insides, etc)</option>
+                      <option value="suburban">Mostly Skeleton</option>
+                      <option value="unsure">Unsure</option>
+                    </select>
+                  </div>
+                  <span id="condition-error" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                  <h3 class="filter-section">Time / Date</h3>
+                  <input type="text" class="text-input" id="report-date" placeholder="YYYY-MM-DD">
+                  <input type="text" id="report-time" class="text-input" placeholder="HH-MM">
+                  <span id="time-date-error" class="error-message"></span>
+                </div>
+                
+              <button id="submit-report" class="submit-btn">Submit</button>
+            </div>
+
+            
+            <div class="sidebar-content closed" id="submitted-page">
+              <h2 class="sub-title" id="submit-title">Submit Successful!</h2>
+              <div class="section-flex action-row">
+                <button id="submit-again-btn" class="submit-btn">Report Another</button>
+                <button id="to-map-btn" class="submit-btn secondary">Back To Map</button>
+              </div>
+            </div>
+        </div>
+      
+
+      <div id='map'>
+        <div id="map-controls">
+          <button id="zoom-in">+</button>
+          <button id="zoom-out">-</button>
+          <button id="reset-zoom">Reset</button>
+        </div>
+      </div>
+    </div>
+    
+   
+    <script type="module" src="./js/pages/report-page.js"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "liveServer.settings.root": "/roadkill/frontend",
+  "[javascriptreact]": {
+      "editor.tabSize": 4,
+      "editor.insertSpaces": true
+  }
+}

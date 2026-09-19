@@ -1,0 +1,137 @@
+#report-sidebar {
+    width: 55vw;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+    width: 100%;
+}
+
+.section-flex {
+    display: flex;
+    gap: 12px;
+}
+
+#report-sidebar .photo-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+#report-sidebar .photo-container:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent)
+}
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.upload-text {
+    position: absolute;
+    bottom: 16px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+.note {
+    font-size: 0.8rem;
+    color: var(--text-muted, #8a8a93);
+    line-height: 1.4;
+    margin: 0;
+}
+
+.geodata-container {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin: 4px 0;
+}
+
+.geodata-item {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-loc-info {
+    font-weight: 600;
+    color: white;
+    background: rgba(255,255,255,0.06);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+}
+
+
+.error-message {
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: rgb(251, 106, 106);
+    font-size: 0.8rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.error-message.visible {
+    display: flex;
+}
+
+.input-error {
+    border-color: rgba(239, 68, 68, 0.5) !important;
+    background: rgba(239, 68, 68, 0.03) !important;
+}
+
+.small-icon {
+    width: 14px;
+    height: 14px;
+    opacity: 0.9;
+}
+
+.input-error {
+    border: 1px solid rgba(255, 90, 90, 0.5);
+    background: rgba(255, 80, 80, 0.04);
+}
+
+#state-road {
+    margin-top: 5px;
+    align-items: center;
+}
+
+
+.submit-btn.secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--accent);
+}
+
+.submit-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.action-row {
+    margin-top: auto; 
+}
