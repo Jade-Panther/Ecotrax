@@ -5,7 +5,7 @@ import TimeControls from "./TimeControls";
 
 import { useApp } from "../../context/AppContext";
 
-const MapControls = () => {
+const MapControls = ({ mapInst }) => {
     const location = useLocation();
     const { viewMode, setViewMode } = useApp();
 
@@ -19,7 +19,7 @@ const MapControls = () => {
             </div>  
             {location.pathname === "/" && (
                 <>
-                    {viewMode === 'density' && <HeatSlider />}
+                    {viewMode === 'density' && <HeatSlider mapInst={mapInst} />}
                     {viewMode === 'density' && <TimeControls />}
                     <ViewToggles />
                 </>

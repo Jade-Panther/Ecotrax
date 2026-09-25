@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { RAINBOW } from '../../utils/constants';
+import { updateHeatGradient } from './Map';
 import L from 'leaflet';
 
 const START_STOPS = [
@@ -27,9 +28,8 @@ const HeatSlider = ({ mapInst, heatLayerInst }) => {
             cssGradient.push(`${s.color} ${s.pos * 100}%`);
         }
 
-        if(heatLayerInst) {
-            heatLayerInst.setOptions({ gradient: gradient });
-        }
+        updateHeatGradient(gradient);
+        
         if(heatBarRef.current) {
             heatBarRef.current.style.background = `linear-gradient(to top, ${cssGradient.join(', ')})`;
         }
@@ -57,7 +57,6 @@ const HeatSlider = ({ mapInst, heatLayerInst }) => {
 
     
             const stop = 1 - y / rect.height;
-            const ind = handle.dataset.index;
             setStops((prevStops) => {
                 const updated = [...prevStops];
                 updated[targetInd] = {...updated[targetInd], pos: stop};

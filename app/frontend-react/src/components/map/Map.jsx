@@ -43,9 +43,9 @@ const ICONS = {
     }),
 }
 
+const cartoApiKey = import.meta.env.VITE_CARTO_KEY;
 
-
-const Map = ({ children }) => {
+const Map = ({ children, onMapReady }) => {
     const { sightings, crossings, viewMode } = useApp();
     const mapElementRef = useRef(null);
     const location = useLocation();
@@ -60,7 +60,7 @@ const Map = ({ children }) => {
         });
 
         L.tileLayer(
-            'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+            'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=' + cartoApiKey,
             {
                 attribution: '© OpenStreetMap contributors © CARTO',
             }
@@ -193,11 +193,11 @@ const Map = ({ children }) => {
             );
         });
 
+        onMapReady?.(mapInst);
+
         return () => {
             controls.forEach(({ selector, handler }) => {
-                document
-                    .querySelector(selector)
-                    ?.removeEventListener('click', handler);
+                document.querySelector(selector)?.removeEventListener('click', handler);
             });
 
             mapInst?.remove();
@@ -291,5 +291,13 @@ export function goto(lat, lon) {
     mapInst.flyTo([lat, lon], 20, {
         animate: true,
         duration: 2,
+    });
+}
+
+export function updateHeatGradient(gradient) {
+    if (!heatLayer) return;
+
+    heatLayer.setOptions({
+        gradient
     });
 }
