@@ -258,6 +258,26 @@ const Analytics = () => {
     }, []);
 
     useEffect(() => {
+        const container = document.getElementById("analysis-content");
+
+        if (!container) return;
+
+        const observer = new ResizeObserver(() => {
+            Object.values(chartsRef.current).forEach((chart) => {
+                if (chart) {
+                    chart.resize();
+                }
+            });
+        });
+
+        observer.observe(container);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, []);
+
+    useEffect(() => {
         const fetchAnalytics = async () => {
             const data = await getAnalytics(filters);
             refreshCharts(data);
